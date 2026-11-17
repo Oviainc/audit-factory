@@ -1,0 +1,59 @@
+# Example client config — SECOND-SHIFT SWITCHBOARD (fictional business).
+# Idea: Audit Factory pool, Nov 15, 2026 — after-hours answering for
+# funeral homes. Uses the standard RECEPTIONIST pack: no new code, this
+# file plus a Twilio number pointing at the server is the whole install.
+# Tone rules live in the FAQs and greeting: slow, plain, never salesy.
+# A reseller copies this file to config/business.yaml and edits details.
+
+business_name: "Coopérative funéraire des Laurentides (exemple fictif)"
+language: "fr"
+agent: "receptionist"
+
+greeting: "Bonjour, vous avez joint la coopérative funéraire. Je suis là pour vous aider, à toute heure. Comment puis-je vous aider?"
+voice: "piper-local"
+
+hours: "Bureau ouvert du lundi au vendredi, 9h à 17h. Les appels urgents sont pris en tout temps, jour et nuit, par ce service."
+
+services:
+  - name: "Avis de décès et premiers arrangements"
+    description: "Prise des coordonnées de la famille, du lieu du décès et du directeur de garde à prévenir immédiatement."
+  - name: "Renseignements sur les arrangements préalables"
+    description: "Information générale sur les contrats d'arrangements préalables et prise de rendez-vous avec un conseiller."
+  - name: "Cérémonies et services commémoratifs"
+    description: "Renseignements sur les salons, les cérémonies et la disponibilité, avec suivi par l'équipe le jour ouvrable suivant."
+
+faqs:
+  - q: "Un proche vient de décéder, que dois-je faire?"
+    a: "D'abord, recevez nos condoléances. Donnez-moi votre nom, le nom de la personne décédée et l'endroit où elle se trouve; le directeur de garde est prévenu immédiatement et vous rappelle sans délai."
+  - q: "Combien coûtent les funérailles?"
+    a: "Les coûts dépendent des choix de la famille. Un conseiller vous explique tout clairement, sans pression, lors d'un rendez-vous. Je peux prendre vos coordonnées pour ce rendez-vous."
+  - q: "Avez-vous un salon près de chez nous?"
+    a: "La coopérative dessert les Laurentides. Donnez-moi votre municipalité et je transmets votre demande à l'équipe, qui confirme l'endroit exact à l'ouverture."
+
+agent_profile:
+  persona_name: "Claire"
+
+knowledge:
+  enabled: false
+  folder: "knowledge"
+  embedding_model: "nomic-embed-text"
+  top_k: 3
+
+tts:
+  engine: "piper"
+  voxtral:
+    base_url: "http://localhost:8000/v1"
+    model: "voxtral-tts"
+    voice_id: ""
+    reference_audio: ""
+    language: ""
+
+escalation:
+  urgent_keywords:
+    - "décès"
+    - "décédé"
+    - "vient de mourir"
+    - "death"
+    - "died"
+    - "urgent"
+  note: "Any first-death call escalates to the on-call director immediately, at any hour. Never quote prices, never rush a caller, never end a call before the callback number is confirmed twice."

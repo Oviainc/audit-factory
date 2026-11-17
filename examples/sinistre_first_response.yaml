@@ -1,0 +1,64 @@
+# Example client config — PREMIÈRE LIGNE SINISTRE (fictional business).
+# Idea: Audit Factory daily review #2, Nov 16, 2026 — 24/7 first-response
+# line for water/fire damage restoration firms. Standard RECEPTIONIST
+# pack: no new code; this file plus a Twilio number is the whole install.
+# The product is the first ten minutes: a timestamped intake, photos and
+# documents requested on the call, the on-call crew dispatched, and a
+# clean chronological file ready for the insurer in the morning.
+# A reseller copies this file to config/business.yaml and edits details.
+
+business_name: "Restauration Nord-Sud (exemple fictif)"
+language: "fr"
+agent: "receptionist"
+
+greeting: "Bonjour, vous avez joint la ligne d'urgence de Restauration Nord-Sud. Chaque minute compte — décrivez-moi le dégât, et l'équipe de garde est dépêchée pendant que nous parlons."
+voice: "piper-local"
+
+hours: "Ligne d'urgence ouverte en tout temps, jour et nuit, 7 jours sur 7. Le bureau administratif est ouvert du lundi au vendredi, 8h à 17h."
+
+services:
+  - name: "Déclaration de sinistre et dépannage d'urgence"
+    description: "Prise de la déclaration horodatée : type de dégât, source d'eau ou de feu, pièces touchées, et dépannage immédiat de l'équipe de garde."
+  - name: "Dossier assureur"
+    description: "Dossier chronologique complet dès le premier matin : heure de l'appel, photos demandées au client, gestes d'atténuation conseillés et heure d'arrivée de l'équipe."
+  - name: "Suivi de chantier"
+    description: "Renseignements sur l'avancement des travaux d'assèchement et de reconstruction, avec suivi par le chargé de projet le jour ouvrable suivant."
+
+faqs:
+  - q: "L'eau coule encore, que dois-je faire tout de suite?"
+    a: "Si vous pouvez le faire sans danger, fermez la valve d'eau principale et coupez le disjoncteur des pièces touchées. Éloignez les objets de valeur de l'eau, ne marchez pas dans une pièce où l'électricité est active, et restez en ligne : vos gestes sont consignés à l'heure près, ce qui compte pour votre assureur."
+  - q: "Est-ce que mon assureur va payer?"
+    a: "La décision appartient à votre assureur. Notre travail est de limiter les dégâts dès maintenant et de produire un dossier complet et horodaté que votre expert peut utiliser dès le premier matin. Donnez-moi votre numéro de police si vous l'avez sous la main, sinon le dossier part quand même."
+  - q: "Dans combien de temps l'équipe arrive?"
+    a: "L'équipe de garde est avisée dès la fin de cet appel, avec l'adresse et le type de dégât. Le délai exact dépend de la distance et des chantiers en cours; le répartiteur vous rappelle avec l'heure d'arrivée estimée."
+
+agent_profile:
+  persona_name: "Marc"
+
+knowledge:
+  enabled: false
+  folder: "knowledge"
+  embedding_model: "nomic-embed-text"
+  top_k: 3
+
+tts:
+  engine: "piper"
+  voxtral:
+    base_url: "http://localhost:8000/v1"
+    model: "voxtral-tts"
+    voice_id: ""
+    reference_audio: ""
+    language: ""
+
+escalation:
+  urgent_keywords:
+    - "feu"
+    - "incendie"
+    - "fire"
+    - "inondation"
+    - "dégât d'eau"
+    - "refoulement"
+    - "égout"
+    - "sinistre"
+    - "urgence"
+  note: "Every damage call escalates to the on-call crew immediately, at any hour. Safety first: never advise touching electrical equipment in standing water. Log the call time, the caller's mitigation steps and the callback number before ending the call; ask for photos by text message on every intake."

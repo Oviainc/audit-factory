@@ -1,0 +1,67 @@
+# Example client config — REGISTRATION DESK (fictional business).
+# Idea: Audit Factory pool, Nov 15, 2026 — seasonal registration Q&A,
+# payment follow-up and waitlist handling for camps, ski schools and
+# activity centres. Uses the standard BOOKING pack: no new code, this
+# file plus a Twilio number pointing at the server is the whole install.
+# A reseller copies this file to config/business.yaml and edits details.
+
+business_name: "Nordpeak Ski School and Camps (fictional example)"
+language: "en"
+agent: "booking"
+
+greeting: "Hello, you've reached Nordpeak registration. This is Robin, the registration assistant. Which program can I help you register for today?"
+voice: "piper-local"
+
+hours: "Registration desk open Monday to Sunday, 8am to 8pm Eastern during the season. Messages outside those hours are answered the next morning."
+
+services:
+  - name: "Ski school registration"
+    description: "Group and private lessons for children and adults, by level, at the Laurentians resort base."
+  - name: "Winter camp registration"
+    description: "School-break day camps with transport options from Sainte-Agathe-des-Monts and Saint-Sauveur."
+  - name: "Season passes and multi-week programs"
+    description: "Multi-week lesson programs with payment in two instalments and a managed waitlist when a level fills."
+
+faqs:
+  - q: "What happens if a program is full?"
+    a: "Your name goes on the waitlist in order. When a place opens, the desk contacts you the same day and holds the place for 24 hours."
+  - q: "Can I pay in instalments?"
+    a: "Yes, multi-week programs can be paid in two instalments. The desk takes your details and the office confirms the schedule in writing."
+  - q: "What is the cancellation policy?"
+    a: "A full credit applies up to seven days before the start date. The office confirms the exact terms in writing with your registration."
+
+agent_profile:
+  persona_name: "Robin"
+  services_bookable:
+    - "Children group lessons"
+    - "Adult group lessons"
+    - "Private lessons"
+    - "Winter day camp"
+    - "Multi-week program registration"
+    - "Waitlist registration"
+  slot_policy: "tentative"
+  service_area: "Laurentians, Quebec — resort base with transport from Sainte-Agathe-des-Monts and Saint-Sauveur"
+
+knowledge:
+  enabled: false
+  folder: "knowledge"
+  embedding_model: "nomic-embed-text"
+  top_k: 3
+
+tts:
+  engine: "piper"
+  voxtral:
+    base_url: "http://localhost:8000/v1"
+    model: "voxtral-tts"
+    voice_id: ""
+    reference_audio: ""
+    language: ""
+
+escalation:
+  urgent_keywords:
+    - "injured"
+    - "injury"
+    - "accident"
+    - "lost child"
+    - "emergency"
+  note: "Any injury, accident or lost-child call escalates to the on-site team immediately — registration questions never outrank safety."

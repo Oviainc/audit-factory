@@ -42,14 +42,27 @@ in EN / FR / ES. Complete files are skipped automatically.
 python generate_pieces.py clients.csv campaign.md
 ```
 
-## 4. Outreach packets
+## 4. Baromètre Territorial — territorial benchmark
+
+A territory campaign for an MRC, chamber of commerce or
+economic-development body: a roster of local businesses with sector
+and municipality tags, every one audited, compared in a
+sector × municipality matrix, and delivered as a council-ready
+report with a catch-up cohort tracker. Mystery-call scripts for the
+campaign ship alongside.
+
+```bash
+python generate_territory.py roster.csv audits/ "Territory name" out/
+```
+
+## 5. Outreach packets
 
 For every audited business, a packet: the channel that actually
 reaches it (email, form or phone script), the exact draft, and the
 findings it rests on. Drafts carry no public prices and close with
 "Got questions?".
 
-## 5. Installable agent packs (examples/)
+## 6. Installable agent packs (examples/)
 
 Config-only installs for the OVIA AI receptionist — each file is a
 complete fictional-business configuration, ready to adapt:
@@ -63,7 +76,7 @@ complete fictional-business configuration, ready to adapt:
 ## Tests
 
 ```bash
-python -m pytest tests/ -q   # 16 passed
+python -m pytest tests/ -q   # 19 passed
 ```
 
 ## License
